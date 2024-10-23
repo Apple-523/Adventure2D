@@ -212,7 +212,6 @@ ScriptedImporter:
     cells:
     - name: Attack_Frame_0
       frameIndex: 0
-      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 19
@@ -221,7 +220,6 @@ ScriptedImporter:
       spriteId: ec80ef7f3561b40c69285d570a8e365f
     - name: Attack_Frame_1
       frameIndex: 1
-      additiveSortOrder: 0
       cellRect:
         x: 23
         y: 17
@@ -230,7 +228,6 @@ ScriptedImporter:
       spriteId: ab9fa68d2b1c94aa2b7b3dea26023965
     - name: Attack_Frame_2
       frameIndex: 2
-      additiveSortOrder: 0
       cellRect:
         x: 22
         y: 17
@@ -239,7 +236,6 @@ ScriptedImporter:
       spriteId: ea2c1dae494e7496a82b7ba7ba68abc3
     - name: Attack_Frame_3
       frameIndex: 3
-      additiveSortOrder: 0
       cellRect:
         x: 21
         y: 18
