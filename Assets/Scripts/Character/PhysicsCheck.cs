@@ -23,6 +23,18 @@ public class PhysicsCheck : MonoBehaviour
 
     public LayerMask groundLayer;
 
+
+    [Header("墙面相关参数")]
+
+    public bool isByLeftWall;
+    public Vector2 wallLeftOffset;
+    public float wallLeftRadius;
+    public LayerMask wallLeftLayer;
+    public bool isByRightWall;
+    public Vector2 wallRightOffset;
+    public float wallRightRadius;
+    public LayerMask wallRightLayer;
+
     private void Awake()
     {
         eventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
@@ -44,8 +56,18 @@ public class PhysicsCheck : MonoBehaviour
         if (isOnGround != onGround)
         {
             isOnGround = onGround;
-            eventHandler.PlayerGroundChange(onGround);
+            eventHandler.CharacterGroundChange(onGround);
         }
+
+        bool onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + wallLeftOffset, wallLeftRadius, wallLeftLayer);
+        bool onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + wallRightOffset, wallRightRadius, wallRightLayer);
+        if (onLeftWall != isByLeftWall || onRightWall != isByRightWall)
+        {
+            eventHandler.CharacterByWall(isByLeftWall, isByRightWall);
+        }
+        isByLeftWall = onLeftWall;
+        isByRightWall = onRightWall;
+
     }
 
     /// <summary>
@@ -53,7 +75,11 @@ public class PhysicsCheck : MonoBehaviour
     /// </summary>
     void OnDrawGizmos()
     {
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere((Vector2)transform.position + groundOffset, groundRadius);
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireSphere((Vector2)transform.position + wallLeftOffset, wallLeftRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + wallRightOffset, wallRightRadius);
     }
 
 }

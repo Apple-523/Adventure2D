@@ -21,13 +21,13 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnEnable()
     {
-        physicsCheckEventHandler.OnPlayerGroundChange += OnPlayerGroundChage;
-        physicsCheckEventHandler.OnPlayerBeginJump += OnPlayerBeginJump;
+        physicsCheckEventHandler.OnCharacterGroundChange += OnPlayerGroundChage;
+        physicsCheckEventHandler.OnCharacterBeginJump += OnPlayerBeginJump;
     }
     private void OnDisable()
     {
-        physicsCheckEventHandler.OnPlayerGroundChange -= OnPlayerGroundChage;
-        physicsCheckEventHandler.OnPlayerBeginJump -= OnPlayerBeginJump;
+        physicsCheckEventHandler.OnCharacterGroundChange -= OnPlayerGroundChage;
+        physicsCheckEventHandler.OnCharacterBeginJump -= OnPlayerBeginJump;
     }
 
 

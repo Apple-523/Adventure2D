@@ -39,14 +39,16 @@ public class Player : MonoBehaviour
     {
         playerInputSystem.Enable();
         playerInputSystem.Player.Jump.started += onClickJump;
-        eventHandler.OnPlayerGroundChange += OnPlayerGroundChange;
+        eventHandler.OnCharacterGroundChange += OnPlayerGroundChange;
+        eventHandler.OnCharacterByWall += OnPlayerByWall;
     }
 
     private void OnDisable()
     {
         playerInputSystem.Disable();
         playerInputSystem.Player.Jump.started -= onClickJump;
-        eventHandler.OnPlayerGroundChange -= OnPlayerGroundChange;
+        eventHandler.OnCharacterGroundChange -= OnPlayerGroundChange;
+        eventHandler.OnCharacterByWall -= OnPlayerByWall;
     }
 
 
@@ -71,11 +73,9 @@ public class Player : MonoBehaviour
     {
         if (isOnGround)
         {
-
             rigidbody2d.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
-            eventHandler.PlayerBeginJump(false);
+            eventHandler.CharacterBeginJump(false);
         }
-
     }
 
 
@@ -105,9 +105,18 @@ public class Player : MonoBehaviour
         transform.localScale = localScale;
     }
 
-
+    #region 事件接收
     private void OnPlayerGroundChange(object sender, bool e)
     {
         isOnGround = e;
     }
+
+    private void OnPlayerByWall(object sender, EventBOOLArgs args)
+    {
+        if (args.AtLeastOneTrue()) {
+            Vector2 speedVector = new Vector2(0, rigidbody2d.velocity.y);
+            rigidbody2d.velocity = speedVector;
+        }
+    }
+    #endregion
 }
