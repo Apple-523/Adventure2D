@@ -44,20 +44,20 @@ public class PlayerAnimator : MonoBehaviour
     {
         float velocityX = rigidbody2d.velocity.x;
         float velocityY = rigidbody2d.velocity.y;
-        animator.SetFloat(Settings.kPlayerAnimVelocityX, Mathf.Abs(velocityX));
-        animator.SetFloat(Settings.kPlayerAnimVelocityY, velocityY);
+        animator.SetFloat(PlayerAnim.kPlayerAnimVelocityX, Mathf.Abs(velocityX));
+        animator.SetFloat(PlayerAnim.kPlayerAnimVelocityY, velocityY);
 
     }
     #region 事件接收
     private void OnPlayerGroundChage(object sender, bool isOnGround)
     {
-        animator.SetBool(Settings.kPlayerAnimIsOnGround, isOnGround);
+        animator.SetBool(PlayerAnim.kPlayerAnimIsOnGround, isOnGround);
     }
 
     private void OnPlayerBeginJump(object sender, bool isOnGround)
     {
-        animator.SetBool(Settings.kPlayerAnimIsJump,true);
-        animator.SetTrigger(Settings.kPlayerAnimJumpTrig);
+        animator.SetBool(PlayerAnim.kPlayerAnimIsJump,true);
+        animator.SetTrigger(PlayerAnim.kPlayerAnimJumpTrig);
     }
 
     #endregion

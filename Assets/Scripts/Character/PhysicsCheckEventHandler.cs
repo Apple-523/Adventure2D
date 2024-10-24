@@ -27,8 +27,8 @@ public class PhysicsCheckEventHandler : MonoBehaviour
 
 public class EventBOOLArgs
 {
-    bool arg1;
-    bool arg2;
+    public bool arg1;
+    public bool arg2;
 
     public EventBOOLArgs(bool arg1, bool arg2)
     {

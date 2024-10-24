@@ -59,11 +59,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isOnGround)
-        {
-            PlayerMove();
-        }
-
+        PlayerMove();
     }
 
     #endregion
@@ -113,7 +109,8 @@ public class Player : MonoBehaviour
 
     private void OnPlayerByWall(object sender, EventBOOLArgs args)
     {
-        if (args.AtLeastOneTrue()) {
+        if (args.AtLeastOneTrue())
+        {
             Vector2 speedVector = new Vector2(0, rigidbody2d.velocity.y);
             rigidbody2d.velocity = speedVector;
         }

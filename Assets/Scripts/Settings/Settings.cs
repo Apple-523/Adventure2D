@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Settings 
+
+public class EnemyAnim {
+   public static string kEnemyAnimIsWalk = "isWalk";
+   public static string kEnemyAnimIsRun = "isRun";
+   public static string kEnemyAnimDamageTrig = "damageTrig";
+}
+public class PlayerAnim 
 {
    // public static string kPlayerAnimIsWalking = "isWalking";
    // public static string kPlayerAnimIsRuning = "isRuning";
