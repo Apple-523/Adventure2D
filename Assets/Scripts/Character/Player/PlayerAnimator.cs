@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,59 @@ public class PlayerAnimator : MonoBehaviour
 {
     private Animator animator;
     private Player player;
-    private void Awake() {
+
+    private Rigidbody2D rigidbody2d;
+
+    private PhysicsCheckEventHandler physicsCheckEventHandler;
+    private void Awake()
+    {
         animator = GetComponent<Animator>();
         player = GetComponent<Player>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        physicsCheckEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
+    }
+
+    private void OnEnable()
+    {
+        physicsCheckEventHandler.OnPlayerGroundChange += OnPlayerGroundChage;
+        physicsCheckEventHandler.OnPlayerBeginJump += OnPlayerBeginJump;
+    }
+    private void OnDisable()
+    {
+        physicsCheckEventHandler.OnPlayerGroundChange -= OnPlayerGroundChage;
+        physicsCheckEventHandler.OnPlayerBeginJump -= OnPlayerBeginJump;
     }
 
 
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        SetAnimatorVelocity();
+    }
+
+    private void SetAnimatorVelocity()
+    {
+        float velocityX = rigidbody2d.velocity.x;
+        float velocityY = rigidbody2d.velocity.y;
+        animator.SetFloat(Settings.kPlayerAnimVelocityX, Mathf.Abs(velocityX));
+        animator.SetFloat(Settings.kPlayerAnimVelocityY, velocityY);
+
+    }
+    #region 事件接收
+    private void OnPlayerGroundChage(object sender, bool isOnGround)
+    {
+        animator.SetBool(Settings.kPlayerAnimIsOnGround, isOnGround);
+    }
+
+    private void OnPlayerBeginJump(object sender, bool isOnGround)
+    {
+        animator.SetBool(Settings.kPlayerAnimIsJump,true);
+        animator.SetTrigger(Settings.kPlayerAnimJumpTrig);
+    }
+
+    #endregion
 
 }
