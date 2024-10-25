@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     [Header("跳起速度")]
     public float jumpSpeed;
 
+    [Header("攻击状态")]
+    [SerializeField]
+    private bool isAttack;
+
     /// <summary>
     /// 输入系统
     /// </summary>
@@ -23,32 +27,42 @@ public class Player : MonoBehaviour
     /// 输入的方向
     /// </summary>
     private Vector2 inputDirection;
-    private PhysicsCheckEventHandler eventHandler;
+    private PhysicsCheckEventHandler pcEventHandler;
+    private PlayerEventHandler playerEventHandler;
+
 
     private bool isOnGround;
+
 
 
     #region 生命周期
     private void Awake()
     {
+        isAttack = false;
         playerInputSystem = new PlayerInputSystem();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        eventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
+        pcEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
+        playerEventHandler = GetComponentInChildren<PlayerEventHandler>();
+        
     }
     private void OnEnable()
     {
         playerInputSystem.Enable();
         playerInputSystem.Player.Jump.started += onClickJump;
-        eventHandler.OnCharacterGroundChange += OnPlayerGroundChange;
-        eventHandler.OnCharacterByWall += OnPlayerByWall;
+        pcEventHandler.OnCharacterGroundChange += OnPlayerGroundChange;
+        pcEventHandler.OnCharacterByWall += OnPlayerByWall;
+        playerEventHandler.OnCharacterEndAttack += OnPlayerEndAttack;
+        playerInputSystem.Player.Fire.started += OnPlayerFire;
     }
 
     private void OnDisable()
     {
         playerInputSystem.Disable();
         playerInputSystem.Player.Jump.started -= onClickJump;
-        eventHandler.OnCharacterGroundChange -= OnPlayerGroundChange;
-        eventHandler.OnCharacterByWall -= OnPlayerByWall;
+        pcEventHandler.OnCharacterGroundChange -= OnPlayerGroundChange;
+        pcEventHandler.OnCharacterByWall -= OnPlayerByWall;
+        playerEventHandler.OnCharacterEndAttack -= OnPlayerEndAttack;
+        playerInputSystem.Player.Fire.started -= OnPlayerFire;
     }
 
 
@@ -70,7 +84,7 @@ public class Player : MonoBehaviour
         if (isOnGround)
         {
             rigidbody2d.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
-            eventHandler.CharacterBeginJump(false);
+            playerEventHandler.CharacterBeginJump(false);
         }
     }
 
@@ -114,6 +128,18 @@ public class Player : MonoBehaviour
             Vector2 speedVector = new Vector2(0, rigidbody2d.velocity.y);
             rigidbody2d.velocity = speedVector;
         }
+    }
+
+    private void OnPlayerFire(InputAction.CallbackContext context)
+    {
+        isAttack = true;
+        playerEventHandler.CharacterPressAttack(isAttack);
+
+    }
+
+    private void OnPlayerEndAttack(object sender, bool isAttack)
+    {
+        this.isAttack = isAttack;
     }
     #endregion
 }

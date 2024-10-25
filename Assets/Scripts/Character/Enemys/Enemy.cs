@@ -61,7 +61,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        animator.SetFloat(CharacterAnim.kPlayerAnimVelocityX, Mathf.Abs(rigidbody2d.velocity.x));
+        animator.SetFloat(CharacterAnim.kCharacterAnimVelocityX, Mathf.Abs(rigidbody2d.velocity.x));
     }
 
     /// <summary>
@@ -84,6 +84,7 @@ public abstract class Enemy : MonoBehaviour
     {
         physicsEvent.OnCharacterByWall += onCharacterByWall;
         physicsEvent.OnPlayerIsClose += OnPlayerIsClose;
+        
     }
 
     private void OnDisable()
@@ -123,7 +124,6 @@ public abstract class Enemy : MonoBehaviour
     public abstract void OnEnemyStateChange();
 
     public virtual void OnPlayerIsClose(object sender, bool e) {
-        Debug.Log("OnPlayerIsClose");
         SwitchToAState(EnemyStateEnum.Special);
     }
 

@@ -6,7 +6,7 @@ class BoarNormalState : EnemyState
 {
     public override void OnEnterState()
     {
-        Debug.Log("当前状态为普通状态");
+        // Debug.Log("当前状态为普通状态");
         enemy.currentSpeed = enemy.normalSpeed;
         enemy.isWalk = true;
         enemy.isRun = false;
@@ -15,7 +15,7 @@ class BoarNormalState : EnemyState
 
     public override void OnExitState()
     {
-        Debug.Log("退出普通状态");
+        // Debug.Log("退出普通状态");
     }
 }
 
@@ -23,7 +23,7 @@ class BoarSpecialState : EnemyState
 {
     public override void OnEnterState()
     {
-        Debug.Log("当前状态为特殊状态");
+        // Debug.Log("当前状态为特殊状态");
         enemy.currentSpeed = enemy.specialSpeed;
         enemy.isWalk = false;
         enemy.isRun = true;
@@ -31,7 +31,7 @@ class BoarSpecialState : EnemyState
 
     public override void OnExitState()
     {
-        Debug.Log("退出特殊状态");
+        // Debug.Log("退出特殊状态");
     }
 }
 
@@ -130,11 +130,8 @@ public class Boar : Enemy
 
     public override void OnEnemyStateChange()
     {
-        Debug.Log("是这里吗？");
+        
         //TODO: wmy 这里做event操作
-        // if (currentState == specialState) {
-        //     SwitchToAState(EnemyStateEnum.Normal);
-        // }
     }
 
     public override void OnPlayerIsClose(object sender, bool isCloseToPlayer)

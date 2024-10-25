@@ -1,18 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("最大血量")]
+    public float maxHealth;
+    [Header("当前血量")]
+    [SerializeField]
+    private float currentHealth;
+    [Header("无敌状态时间")]
+    public float invincibleStateTime;
+    [SerializeField]
+    private float currentStateTime;
+    public LayerMask canBeDamagedLayer;
+    private CharacterEventHandler characterEventHandler;
+
+    private void Awake()
     {
-        
+        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
+        currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (currentStateTime > 0)
+        {
+            currentHealth -= Time.deltaTime;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("canBeDamagedLayer = "+ (int)canBeDamagedLayer);
+        Debug.Log("")
+        if (CommonUtils.IsInLayerMask(other.gameObject, canBeDamagedLayer))
+        {
+            // 将血量减少
+            Attack attack = other.gameObject.GetComponent<Attack>();
+            float attackValue = attack.attackValue;
+            currentHealth -= attackValue;
+            if (currentHealth <= 0)
+            {
+                // 死亡
+
+            }
+            else
+            {
+                // 受伤
+                Debug.Log(gameObject.name + "受伤了!");
+                // 播放动画
+                characterEventHandler.CharacterDamage(true);
+                // 无敌时间
+                currentStateTime = invincibleStateTime;
+            }
+
+        }
+
+        // other.gameObject.tag = 
+        // Debug.Log("OnCollisionStay2D");
     }
 }

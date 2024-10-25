@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8524078636832929462}
   - component: {fileID: 3816542647341974366}
+  - component: {fileID: 5290478735784297379}
   m_Layer: 0
   m_Name: EventHandler
   m_TagString: Untagged
@@ -44,6 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b0fd03e52dd4ea0a6a10241feab814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5290478735784297379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325428319351004460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe8cc0c235ca4f42969bb329489e9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7164596672589485512
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,8 +72,10 @@ GameObject:
   - component: {fileID: 5888302355517319640}
   - component: {fileID: 1894291369859246281}
   - component: {fileID: 238540253733250240}
+  - component: {fileID: 233571950082539499}
+  - component: {fileID: 1089585400211700477}
   m_Layer: 0
-  m_Name: Boar
+  m_Name: WhiteBoar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,3 +292,42 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   waitTime: 2
   currentWaitTime: 0
+  specialTime: 3
+  currentSpecialTime: 0
+--- !u!114 &233571950082539499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164596672589485512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c141f63dab144b4598d14cd44e6cdfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCloseToPlayer: 0
+  detectDistance: 5
+  detectOffset: {x: -0.66, y: 0.78}
+  detectMask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &1089585400211700477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164596672589485512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858089921e9e64ad6a701782e2e06b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  invincibleStateTime: 2
+  currentStateTime: 0
+  canDamageLayer:
+    serializedVersion: 2
+    m_Bits: 128

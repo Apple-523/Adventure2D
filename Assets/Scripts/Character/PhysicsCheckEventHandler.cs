@@ -10,12 +10,6 @@ public class PhysicsCheckEventHandler : MonoBehaviour
         OnCharacterGroundChange?.Invoke(this, isOnGround);
     }
 
-    public event EventHandler<bool> OnCharacterBeginJump;
-
-    public void CharacterBeginJump(bool isOnGround)
-    {
-        OnCharacterBeginJump?.Invoke(this, isOnGround);
-    }
 
     public event EventHandler<EventBOOLArgs> OnCharacterByWall;
 
