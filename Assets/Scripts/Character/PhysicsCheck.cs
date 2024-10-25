@@ -38,6 +38,8 @@ public class PhysicsCheck : MonoBehaviour
     private void Awake()
     {
         eventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
+        isByLeftWall = false;
+        isByRightWall = false;
     }
 
     /// <summary>
@@ -63,7 +65,7 @@ public class PhysicsCheck : MonoBehaviour
         bool onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + wallRightOffset, wallRightRadius, wallRightLayer);
         if (onLeftWall != isByLeftWall || onRightWall != isByRightWall)
         {
-            eventHandler.CharacterByWall(isByLeftWall, isByRightWall);
+            eventHandler.CharacterByWall(onLeftWall, onRightWall);
         }
         isByLeftWall = onLeftWall;
         isByRightWall = onRightWall;

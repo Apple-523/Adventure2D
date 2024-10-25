@@ -8,7 +8,7 @@ public class EnemyAnim {
    public static string kEnemyAnimIsRun = "isRun";
    public static string kEnemyAnimDamageTrig = "damageTrig";
 }
-public class PlayerAnim 
+public class CharacterAnim 
 {
    // public static string kPlayerAnimIsWalking = "isWalking";
    // public static string kPlayerAnimIsRuning = "isRuning";
@@ -36,6 +36,7 @@ public class PlayerAnim
    
    public static string kPlayerAnimIsOnGround = "isOnGround";
 }
+
 
 public class MYTag {
    public static string kTagGround = "Ground";

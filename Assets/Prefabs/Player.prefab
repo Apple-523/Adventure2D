@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 1022639592602427597}
   - component: {fileID: 1382446516212263686}
   - component: {fileID: 2941555069580794399}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,7 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4432580315539102146}
   - component: {fileID: 2224511793735868477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PhysicsCheckEventHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,6 +1,5 @@
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum EnemyStateEnum
@@ -30,7 +29,8 @@ public abstract class Enemy : MonoBehaviour
 
     [Header("特殊状态")]
     public float specialSpeed;
-
+    //TODO: wmy 调试
+    // [SerializeField]
     public float currentSpeed;
 
     protected EnemyState currentState;
@@ -38,24 +38,58 @@ public abstract class Enemy : MonoBehaviour
     protected EnemyState specialState;
 
     protected PhysicsCheckEventHandler physicsEvent;
+    protected Rigidbody2D rigidbody2d;
+    protected Animator animator;
+    [Header("状态")]
+    [SerializeField]
     public bool isWalk;
+    [SerializeField]
     public bool isRun;
+    [Header("方向")]
+    [SerializeField]
+    protected Vector2 direction;
 
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         isWalk = false;
         isRun = false;
+        direction = new Vector2(-1, 1);
         physicsEvent = GetComponentInChildren<PhysicsCheckEventHandler>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
+
+    protected virtual void Update()
+    {
+        animator.SetFloat(CharacterAnim.kPlayerAnimVelocityX, Mathf.Abs(rigidbody2d.velocity.x));
+    }
+
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    protected virtual void FixedUpdate()
+    {
+        Move();
+    }
+    private void Move()
+    {
+
+        Vector2 velocity = rigidbody2d.velocity;
+        velocity.x = currentSpeed * direction.x;
+        // Debug.Log("direction = " +direction );
+        rigidbody2d.velocity = velocity;
     }
 
     private void OnEnable()
     {
         physicsEvent.OnCharacterByWall += onCharacterByWall;
+        physicsEvent.OnPlayerIsClose += OnPlayerIsClose;
     }
 
     private void OnDisable()
     {
         physicsEvent.OnCharacterByWall -= onCharacterByWall;
+        physicsEvent.OnPlayerIsClose -= OnPlayerIsClose;
     }
 
     protected virtual void onCharacterByWall(object sender, EventBOOLArgs e)
@@ -70,10 +104,10 @@ public abstract class Enemy : MonoBehaviour
         switch (state)
         {
             case EnemyStateEnum.Normal:
-                nextState = specialState;
+                nextState = normalState;
                 break;
             case EnemyStateEnum.Special:
-                nextState = normalState;
+                nextState = specialState;
                 break;
         }
         if (currentState == nextState)
@@ -87,4 +121,10 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract void OnEnemyStateChange();
+
+    public virtual void OnPlayerIsClose(object sender, bool e) {
+        Debug.Log("OnPlayerIsClose");
+        SwitchToAState(EnemyStateEnum.Special);
+    }
+
 }

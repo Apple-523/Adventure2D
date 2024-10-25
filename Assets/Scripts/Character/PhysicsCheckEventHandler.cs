@@ -23,6 +23,16 @@ public class PhysicsCheckEventHandler : MonoBehaviour
     {
         OnCharacterByWall?.Invoke(this, new EventBOOLArgs(isByLeftWall, isByRightWall));
     }
+
+    /// <summary>
+    /// 主人公是否靠近的事件
+    /// </summary>
+    public event EventHandler<bool> OnPlayerIsClose;
+    public void PlayerIsClose(bool isInClose)
+    {
+        OnPlayerIsClose?.Invoke(this, isInClose);
+    }
+
 }
 
 public class EventBOOLArgs
@@ -36,10 +46,12 @@ public class EventBOOLArgs
         this.arg2 = arg2;
     }
 
-    public bool IsAllTrue() {
+    public bool IsAllTrue()
+    {
         return arg1 & arg2;
     }
-    public bool AtLeastOneTrue() {
+    public bool AtLeastOneTrue()
+    {
         return arg1 || arg2;
     }
 }
