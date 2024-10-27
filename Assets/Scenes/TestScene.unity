@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3451,7 +3452,7 @@ Tilemap:
       - {fileID: -262506273, guid: 29577eab0eed1423796deeef1ccf5ca5, type: 3}
       - {fileID: 32156337, guid: 29577eab0eed1423796deeef1ccf5ca5, type: 3}
       - {fileID: 59779368, guid: 29577eab0eed1423796deeef1ccf5ca5, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 5, z: 0}
@@ -3495,7 +3496,7 @@ Tilemap:
       - {fileID: -1403080244, guid: 29577eab0eed1423796deeef1ccf5ca5, type: 3}
       - {fileID: -1194283534, guid: 29577eab0eed1423796deeef1ccf5ca5, type: 3}
       - {fileID: 2121027242, guid: 29577eab0eed1423796deeef1ccf5ca5, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -3, y: 6, z: 0}
