@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 8685828792580856506}
   - component: {fileID: 4897745852712856815}
   - component: {fileID: 954765570060213895}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Attack1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 7998255359196906860}
   - component: {fileID: 6801159067148508654}
   - component: {fileID: 3643472291298776077}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Attack3
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 3438888540205994788}
   - component: {fileID: 5922333217681148703}
   - component: {fileID: 272548453036106431}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Attack2
   m_TagString: Player
   m_Icon: {fileID: 0}
