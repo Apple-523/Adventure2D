@@ -31,20 +31,20 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("canBeDamagedLayer = "+ (int)canBeDamagedLayer);
-        Debug.Log("")
         if (CommonUtils.IsInLayerMask(other.gameObject, canBeDamagedLayer))
         {
             // 将血量减少
             Attack attack = other.gameObject.GetComponent<Attack>();
             float attackValue = attack.attackValue;
+            Debug.Log("attackValue = " + attackValue);
             currentHealth -= attackValue;
             if (currentHealth <= 0)
             {
                 // 死亡
-
+                Debug.Log(gameObject.name + "已死亡！");
+                characterEventHandler.CharacterDeath(true);
             }
             else
             {

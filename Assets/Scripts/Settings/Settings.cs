@@ -27,6 +27,7 @@ public class CharacterAnim
    /// Player动画参数 玩家是否死亡
    /// </summary>
    public static string kCharacterAnimIsDead = "isDead";
+   public static string kCharacterAnimDeadTrig = "deadTrig";
    
    
    

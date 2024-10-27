@@ -46,6 +46,9 @@ public class Boar : Enemy
     public float specialTime;
     public float currentSpecialTime;
 
+    [Header("给一个受伤的冲力")]
+    public float damageV;
+
     protected override void Awake()
     {
         base.Awake();
@@ -115,6 +118,9 @@ public class Boar : Enemy
 
     protected override void onCharacterByWall(object sender, EventBOOLArgs e)
     {
+        if (isDeath) {
+            return;
+        }
         base.onCharacterByWall(sender, e);
         bool isTouchLeftWall = e.arg1;
         bool isTouchRightWall = e.arg2;
@@ -141,6 +147,18 @@ public class Boar : Enemy
             base.OnPlayerIsClose(sender, isCloseToPlayer);
             currentSpecialTime = specialTime;
         }
-
+    }
+    protected override void OnEnemyDamage(object sender, bool e)
+    {
+        Debug.Log("OnEnemyDamage111");
+        base.OnEnemyDamage(sender,e);
+        if (currentSpecialTime <= 0) {
+            // 说明是背向Player的
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1;
+            transform.localScale = localScale;
+            direction.x *= -1;
+        }
+        rigidbody2d.AddForce(new Vector2(damageV * transform.localScale.x,0),ForceMode2D.Impulse);
     }
 }
