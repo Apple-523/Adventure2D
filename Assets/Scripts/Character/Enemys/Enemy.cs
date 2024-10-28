@@ -66,7 +66,7 @@ public abstract class Enemy : MonoBehaviour
     {
         // isWalk = false;
         // isRun = false;
-        direction = new Vector2(-1, 1);
+        direction = new Vector2(-1, 0);
         physicsEvent = GetComponentInChildren<PhysicsCheckEventHandler>();
         characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -94,7 +94,7 @@ public abstract class Enemy : MonoBehaviour
             if (currentWaitTime <= 0)
             {
                 // 等待时间一到，就转身往回走
-                direction.x = -direction.x;
+                ChangeDirection();
                 isWaiting = false;
                 Vector3 localScale = transform.localScale;
                 localScale.x = -localScale.x;
@@ -102,6 +102,12 @@ public abstract class Enemy : MonoBehaviour
             }
         }
     }
+
+    protected virtual void ChangeDirection()
+    {
+        direction.x = -direction.x;
+    }
+
     /// <summary>
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -117,7 +123,9 @@ public abstract class Enemy : MonoBehaviour
     {
         Vector2 velocity = rigidbody2d.velocity;
         velocity.x = currentSpeed * direction.x;
+        velocity.y = currentSpeed * direction.y;
         rigidbody2d.velocity = velocity;
+        // Debug.Log(rigidbody2d.velocity);
     }
 
     protected virtual void OnEnable()
@@ -204,5 +212,5 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-   
+
 }

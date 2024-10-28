@@ -322,19 +322,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0a68d66fb7649158a63275281dd4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 1
-  specialSpeed: 5
-  currentSpeed: 0
-  isWalk: 0
-  isRun: 0
-  direction: {x: 0, y: 0}
-  isDamage: 0
-  isDeath: 0
-  point: 10
   waitTime: 2
   currentWaitTime: 0
   specialTime: 3
   currentSpecialTime: 0
+  normalSpeed: 1
+  specialSpeed: 5
+  currentSpeed: 0
+  direction: {x: 0, y: 0}
+  isDamage: 0
+  isDeath: 0
+  point: 10
 --- !u!114 &233571950082539499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858089921e9e64ad6a701782e2e06b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
   currentHealth: 0
   invincibleStateTime: 0
   currentStateTime: 0

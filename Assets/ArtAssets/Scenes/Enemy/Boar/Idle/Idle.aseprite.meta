@@ -212,7 +212,6 @@ ScriptedImporter:
     cells:
     - name: Idle_Frame_0
       frameIndex: 0
-      additiveSortOrder: 0
       cellRect:
         x: 2
         y: 0
@@ -221,7 +220,6 @@ ScriptedImporter:
       spriteId: e65c3f259760e4074be95000cc0cf007
     - name: Idle_Frame_1
       frameIndex: 1
-      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -230,7 +228,6 @@ ScriptedImporter:
       spriteId: 7de7e0369529c4e3284f65955ff658ff
     - name: Idle_Frame_2
       frameIndex: 2
-      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -239,7 +236,6 @@ ScriptedImporter:
       spriteId: 0be692e833e104623be996050bd2114d
     - name: Idle_Frame_3
       frameIndex: 3
-      additiveSortOrder: 0
       cellRect:
         x: 1
         y: 0
