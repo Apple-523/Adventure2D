@@ -29,9 +29,13 @@ public class Player : MonoBehaviour
     private Vector2 inputDirection;
     private PhysicsCheckEventHandler pcEventHandler;
     private PlayerEventHandler playerEventHandler;
+    private CharacterEventHandler characterEventHandler;
 
 
     private bool isOnGround;
+    private bool isDamage;
+
+    private bool isDeath;
 
 
 
@@ -39,11 +43,12 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         isAttack = false;
+        isDamage = false;
         playerInputSystem = new PlayerInputSystem();
         rigidbody2d = GetComponent<Rigidbody2D>();
         pcEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
         playerEventHandler = GetComponentInChildren<PlayerEventHandler>();
-        
+        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
     }
     private void OnEnable()
     {
@@ -53,6 +58,8 @@ public class Player : MonoBehaviour
         pcEventHandler.OnCharacterByWall += OnPlayerByWall;
         playerEventHandler.OnCharacterEndAttack += OnPlayerEndAttack;
         playerInputSystem.Player.Fire.started += OnPlayerFire;
+        characterEventHandler.OnCharacterDamage += OnPlayerDamage;
+        characterEventHandler.OnCharacterDeath += OnPlayerDeath;
     }
 
     private void OnDisable()
@@ -63,6 +70,8 @@ public class Player : MonoBehaviour
         pcEventHandler.OnCharacterByWall -= OnPlayerByWall;
         playerEventHandler.OnCharacterEndAttack -= OnPlayerEndAttack;
         playerInputSystem.Player.Fire.started -= OnPlayerFire;
+        characterEventHandler.OnCharacterDamage += OnPlayerDamage;
+        characterEventHandler.OnCharacterDeath -= OnPlayerDeath;
     }
 
 
@@ -73,7 +82,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMove();
+        if (!isDeath && !isDamage)
+        {
+            PlayerMove();
+        }
     }
 
     #endregion
@@ -132,14 +144,34 @@ public class Player : MonoBehaviour
 
     private void OnPlayerFire(InputAction.CallbackContext context)
     {
+        if (isDeath) {
+            return;
+        }
         isAttack = true;
         playerEventHandler.CharacterPressAttack(isAttack);
-
     }
 
     private void OnPlayerEndAttack(object sender, bool isAttack)
     {
         this.isAttack = isAttack;
+    }
+
+    private void OnPlayerDamage(object sender, bool isDamage)
+    {
+        this.isDamage = isDamage;
+        //  if (isDamage)
+        // {
+        //     Vector2 velocity = rigidbody2d.velocity;
+        //     velocity.x = 0;
+        //     rigidbody2d.velocity = velocity;
+        //     rigidbody2d.AddForce(new Vector2(damageV * transform.localScale.x,0),ForceMode2D.Impulse);
+        // }
+        
+    }
+
+    private void OnPlayerDeath(object sender, bool isDeath)
+    {
+        this.isDeath = isDeath;
     }
     #endregion
 }

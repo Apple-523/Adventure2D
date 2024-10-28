@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5290478735784297379}
   m_Layer: 8
   m_Name: EventHandler
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,16 +68,18 @@ GameObject:
   - component: {fileID: 552681299628889603}
   - component: {fileID: 4004979401403962020}
   - component: {fileID: 190614669571030225}
+  - component: {fileID: 1792148683771529713}
   - component: {fileID: 2853418568754733812}
-  - component: {fileID: 5884899846816058185}
   - component: {fileID: 5888302355517319640}
   - component: {fileID: 1894291369859246281}
   - component: {fileID: 238540253733250240}
   - component: {fileID: 233571950082539499}
   - component: {fileID: 1089585400211700477}
+  - component: {fileID: 8425517084837147438}
+  - component: {fileID: 225977246257118622}
   m_Layer: 8
   m_Name: WhiteBoar
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,11 +174,46 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &1792148683771529713
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164596672589485512}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 640
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_LayerOverridePriority: 10
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 640
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.15, y: 0.9}
+  m_Size: {x: 2.07, y: 1.18}
+  m_Direction: 1
 --- !u!61 &2853418568754733812
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -192,7 +229,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -222,41 +259,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3124354, y: 0.26676607}
   m_EdgeRadius: 0
---- !u!70 &5884899846816058185
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7164596672589485512}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.12, y: 0.71}
-  m_Size: {x: 1.62, y: 1.2}
-  m_Direction: 1
 --- !u!114 &5888302355517319640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,10 +366,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858089921e9e64ad6a701782e2e06b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 100
   currentHealth: 0
   invincibleStateTime: 0
   currentStateTime: 0
   canBeDamagedLayer:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &8425517084837147438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164596672589485512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0ee7ec1d41d4eef97185c70aa159b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackValue: 10
+--- !u!114 &225977246257118622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164596672589485512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fd0349b9d314a52a07ab490339c9de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageV: 10

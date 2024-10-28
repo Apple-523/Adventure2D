@@ -12,6 +12,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private PhysicsCheckEventHandler physicsCheckEventHandler;
     private PlayerEventHandler playerEventHandler;
+    private CharacterEventHandler characterEventHandler;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -19,6 +20,7 @@ public class PlayerAnimator : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         physicsCheckEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
         playerEventHandler = GetComponentInChildren<PlayerEventHandler>();
+        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
     }
 
     private void OnEnable()
@@ -26,13 +28,18 @@ public class PlayerAnimator : MonoBehaviour
         physicsCheckEventHandler.OnCharacterGroundChange += OnPlayerGroundChage;
         playerEventHandler.OnCharacterBeginJump += OnPlayerBeginJump;
         playerEventHandler.OnCharacterPressAttack += OnPlayerPressAttack;
+        characterEventHandler.OnCharacterDamage += OnPlayerDamage;
+        characterEventHandler.OnCharacterDeath += OnPlayerDeath;
     }
     private void OnDisable()
     {
         physicsCheckEventHandler.OnCharacterGroundChange -= OnPlayerGroundChage;
         playerEventHandler.OnCharacterBeginJump -= OnPlayerBeginJump;
         playerEventHandler.OnCharacterPressAttack -= OnPlayerPressAttack;
+        characterEventHandler.OnCharacterDamage -= OnPlayerDamage;
+        characterEventHandler.OnCharacterDeath -= OnPlayerDeath;
     }
+
 
 
 
@@ -65,10 +72,29 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetTrigger(PlayerAnim.kPlayerAnimJumpTrig);
     }
 
-    private void OnPlayerPressAttack(object sender,bool isAttack)
+    private void OnPlayerPressAttack(object sender, bool isAttack)
     {
-        animator.SetBool(PlayerAnim.kPlayerAnimIsAttack,isAttack);   
+        animator.SetBool(PlayerAnim.kPlayerAnimIsAttack, isAttack);
         animator.SetTrigger(PlayerAnim.kPlayerAnimAttackTrig);
+    }
+    private void OnPlayerDamage(object sender, bool isDamage)
+    {
+        if (isDamage)
+        {
+            animator.SetTrigger(CharacterAnim.kCharacterAnimDamageTrig);
+        }
+    }
+
+
+    private void OnPlayerDeath(object sender, bool isDeath)
+    {
+        if (isDeath)
+        {
+            animator.SetTrigger(CharacterAnim.kCharacterAnimDeadTrig);
+            animator.SetBool(CharacterAnim.kCharacterAnimIsDead, isDeath);
+        }
+
+
     }
 
     #endregion

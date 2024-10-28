@@ -157,9 +157,6 @@ public abstract class Enemy : MonoBehaviour
         this.isDamage = isDamage;
         if (isDamage)
         {
-            Vector2 velocity = rigidbody2d.velocity;
-            velocity.x = 0;
-            rigidbody2d.velocity = velocity;
             animator.SetTrigger(CharacterAnim.kCharacterAnimDamageTrig);
         }
 
@@ -175,7 +172,5 @@ public abstract class Enemy : MonoBehaviour
             //TODO: wmy 通知加分
             pointEventHandler.AddPoint(point);
         }
-
-
     }
 }

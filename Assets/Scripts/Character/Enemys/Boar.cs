@@ -150,7 +150,6 @@ public class Boar : Enemy
     }
     protected override void OnEnemyDamage(object sender, bool e)
     {
-        Debug.Log("OnEnemyDamage111");
         base.OnEnemyDamage(sender,e);
         if (currentSpecialTime <= 0) {
             // 说明是背向Player的
@@ -159,6 +158,6 @@ public class Boar : Enemy
             transform.localScale = localScale;
             direction.x *= -1;
         }
-        rigidbody2d.AddForce(new Vector2(damageV * transform.localScale.x,0),ForceMode2D.Impulse);
+        // rigidbody2d.AddForce(new Vector2(damageV * transform.localScale.x,0),ForceMode2D.Impulse);
     }
 }

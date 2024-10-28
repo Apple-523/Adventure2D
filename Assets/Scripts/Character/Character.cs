@@ -27,18 +27,23 @@ public class Character : MonoBehaviour
     {
         if (currentStateTime > 0)
         {
-            currentHealth -= Time.deltaTime;
+            currentStateTime -= Time.deltaTime;
         }
     }
 
+    /// <summary>
+    /// Sent each frame where another object is within a trigger collider
+    /// attached to this object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (CommonUtils.IsInLayerMask(other.gameObject, canBeDamagedLayer))
+        if (CommonUtils.IsInLayerMask(other.gameObject, canBeDamagedLayer) &&
+        currentStateTime <= 0)
         {
             // 将血量减少
             Attack attack = other.gameObject.GetComponent<Attack>();
             float attackValue = attack.attackValue;
-            Debug.Log("attackValue = " + attackValue);
             currentHealth -= attackValue;
             if (currentHealth <= 0)
             {
@@ -55,10 +60,6 @@ public class Character : MonoBehaviour
                 // 无敌时间
                 currentStateTime = invincibleStateTime;
             }
-
         }
-
-        // other.gameObject.tag = 
-        // Debug.Log("OnCollisionStay2D");
     }
 }

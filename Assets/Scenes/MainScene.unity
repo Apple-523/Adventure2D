@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -233,12 +232,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -432,7 +431,7 @@ GameObject:
   - component: {fileID: 849479739}
   - component: {fileID: 849479740}
   m_Layer: 0
-  m_Name: PointManager
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -687,14 +686,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2590171884117823217, guid: eb0d87b841c5a4351b3355f335f5aaaa, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2590171884117823217, guid: eb0d87b841c5a4351b3355f335f5aaaa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5000394417135019119, guid: eb0d87b841c5a4351b3355f335f5aaaa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -735,22 +726,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7325957985921548955, guid: eb0d87b841c5a4351b3355f335f5aaaa, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7325957985921548955, guid: eb0d87b841c5a4351b3355f335f5aaaa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9019959270490223039, guid: eb0d87b841c5a4351b3355f335f5aaaa, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 9019959270490223039, guid: eb0d87b841c5a4351b3355f335f5aaaa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -764,14 +739,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 238540253733250240, guid: 007aa37abbaa64bb79bb6bfb31eb882c, type: 3}
-      propertyPath: point
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 238540253733250240, guid: 007aa37abbaa64bb79bb6bfb31eb882c, type: 3}
-      propertyPath: damageV
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 552681299628889603, guid: 007aa37abbaa64bb79bb6bfb31eb882c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.24
@@ -811,10 +778,6 @@ PrefabInstance:
     - target: {fileID: 552681299628889603, guid: 007aa37abbaa64bb79bb6bfb31eb882c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1089585400211700477, guid: 007aa37abbaa64bb79bb6bfb31eb882c, type: 3}
-      propertyPath: maxHealth
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7164596672589485512, guid: 007aa37abbaa64bb79bb6bfb31eb882c, type: 3}
       propertyPath: m_Name
