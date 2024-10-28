@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6808846624506429110}
   - component: {fileID: 5650366657128955546}
   - component: {fileID: 1811019868171870821}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EventHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,9 +77,9 @@ GameObject:
   - component: {fileID: 3924097726889952092}
   - component: {fileID: 1929477499757127264}
   - component: {fileID: 3484532778916106797}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snail
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -244,7 +244,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &702360343880071014
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 1
   currentWaitTime: 0
-  specialTime: 10
+  specialTime: 3
   currentSpecialTime: 0
   normalSpeed: 0
   specialSpeed: 0
