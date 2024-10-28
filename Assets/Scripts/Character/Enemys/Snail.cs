@@ -49,7 +49,25 @@ public class Snail : Enemy
         base.OnDisable();
         physicsEvent.OnCharacterGroundChange += OnCharacterGroundChange;
     }
+   protected override void Update()
+    {
+        base.Update();
+        CheckSpecialTime();
+    }
 
+    private void CheckSpecialTime()
+    {
+        if (currentState != specialState)
+        {
+            return;
+        }
+        currentSpecialTime -= Time.deltaTime;
+        if (currentSpecialTime <= 0)
+        {
+            animator.SetBool(PlayerDection.kPlayerDetionIsClose, false);
+            SwitchToAState(EnemyStateEnum.Normal);
+        }
+    }
     private void InitParams()
     {
         normalState = new SnailNomalState();
