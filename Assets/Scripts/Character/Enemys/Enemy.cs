@@ -24,13 +24,20 @@ public abstract class EnemyState
 
 public abstract class Enemy : MonoBehaviour
 {
+    [Header("撞墙等待时间")]
+    public float waitTime;
+    public float currentWaitTime;
+    protected bool isWaiting;
+
+    [Header("追击持续时间")]
+    public float specialTime;
+    public float currentSpecialTime;
     [Header("普通状态")]
     public float normalSpeed;
 
     [Header("特殊状态")]
     public float specialSpeed;
-    //TODO: wmy 调试
-    // [SerializeField]
+    [SerializeField]
     public float currentSpeed;
 
     protected EnemyState currentState;
@@ -42,11 +49,6 @@ public abstract class Enemy : MonoBehaviour
     protected Rigidbody2D rigidbody2d;
     protected PointEventHandler pointEventHandler;
     protected Animator animator;
-    [Header("状态")]
-    [SerializeField]
-    public bool isWalk;
-    [SerializeField]
-    public bool isRun;
     [Header("方向")]
     [SerializeField]
     protected Vector2 direction;
@@ -62,8 +64,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
-        isWalk = false;
-        isRun = false;
+        // isWalk = false;
+        // isRun = false;
         direction = new Vector2(-1, 1);
         physicsEvent = GetComponentInChildren<PhysicsCheckEventHandler>();
         characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
@@ -78,9 +80,28 @@ public abstract class Enemy : MonoBehaviour
         {
             return;
         }
+        CheckTrunAroundWaitingTime();
         animator.SetFloat(CharacterAnim.kCharacterAnimVelocityX, Mathf.Abs(rigidbody2d.velocity.x));
     }
-
+    /// <summary>
+    /// 检测当前是否在等待时间内
+    /// </summary>
+    private void CheckTrunAroundWaitingTime()
+    {
+        if (isWaiting)
+        {
+            currentWaitTime -= Time.deltaTime;
+            if (currentWaitTime <= 0)
+            {
+                // 等待时间一到，就转身往回走
+                direction.x = -direction.x;
+                isWaiting = false;
+                Vector3 localScale = transform.localScale;
+                localScale.x = -localScale.x;
+                transform.localScale = localScale;
+            }
+        }
+    }
     /// <summary>
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -99,7 +120,7 @@ public abstract class Enemy : MonoBehaviour
         rigidbody2d.velocity = velocity;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         physicsEvent.OnCharacterByWall += onCharacterByWall;
         physicsEvent.OnPlayerIsClose += OnPlayerIsClose;
@@ -107,7 +128,7 @@ public abstract class Enemy : MonoBehaviour
         characterEventHandler.OnCharacterDeath += OnEnemyDeath;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         physicsEvent.OnCharacterByWall -= onCharacterByWall;
         physicsEvent.OnPlayerIsClose -= OnPlayerIsClose;
@@ -118,7 +139,16 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void onCharacterByWall(object sender, EventBOOLArgs e)
     {
-        //TODO: wmy todo
+        bool isTouchLeftWall = e.arg1;
+        bool isTouchRightWall = e.arg2;
+        if (isTouchLeftWall || isTouchRightWall)
+        {
+            if (!isWaiting)
+            {
+                currentWaitTime = waitTime;
+                isWaiting = true;
+            }
+        }
     }
 
     public void SwitchToAState(EnemyStateEnum state)
@@ -146,7 +176,7 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract void OnEnemyStateChange();
 
-    public virtual void OnPlayerIsClose(object sender, bool e)
+    public virtual void OnPlayerIsClose(object sender, bool isCloseToPlayer)
     {
         SwitchToAState(EnemyStateEnum.Special);
     }
@@ -173,4 +203,6 @@ public abstract class Enemy : MonoBehaviour
             pointEventHandler.AddPoint(point);
         }
     }
+
+   
 }

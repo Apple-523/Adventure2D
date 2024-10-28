@@ -78,7 +78,7 @@ public class PhysicsCheck : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere((Vector2)transform.position + groundOffset, groundRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + groundOffset * transform.localScale, groundRadius);
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere((Vector2)transform.position + wallLeftOffset, wallLeftRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + wallRightOffset, wallRightRadius);

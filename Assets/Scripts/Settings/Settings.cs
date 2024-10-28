@@ -28,9 +28,6 @@ public class CharacterAnim
    /// </summary>
    public static string kCharacterAnimIsDead = "isDead";
    public static string kCharacterAnimDeadTrig = "deadTrig";
-   
-   
-   
    public static string kCharacterAnimIsOnGround = "isOnGround";
 }
 
@@ -47,6 +44,9 @@ public class PlayerAnim {
    public static string kPlayerAnimAttackTrig = "attackTrig";
 }
 
+public class PlayerDection {
+   public static string kPlayerDetionIsClose = "isClose";
+}
 
 public class MYTag {
    public static string kTagGround = "Ground";
