@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 8425517084837147438}
   - component: {fileID: 225977246257118622}
   m_Layer: 8
-  m_Name: WhiteBoar
+  m_Name: BrownBoar
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ SpriteRenderer:
   m_SortingLayerID: -1392975237
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -349463982, guid: 3b4c0b019c66741c9a82bdda5b256050, type: 3}
+  m_Sprite: {fileID: -778706061, guid: 5c2082285bdcd4615ab16fdd80d519ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -299,7 +299,7 @@ Animator:
   m_GameObject: {fileID: 7164596672589485512}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: bed647691016d45cf8a2f948ac164aeb, type: 2}
+  m_Controller: {fileID: 22100000, guid: 35e4b277d64954fe29cfb9e3de8c3fa4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

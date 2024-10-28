@@ -6,16 +6,16 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WhiteBoar
+  m_Name: BrownBoar
   m_Controller: {fileID: 9100000, guid: b88bb9a85174442668bffc07c6f8f4ce, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: c9237a9a381bf447b8e6ee0d4a03fa5c, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 44a7d6daffbf040f0a7dbb1df2b039bf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a5473adfb3956434080348220ab203e3, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: d4e070717c2a7414e87e469e8f1b88c0, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 6507e2ea8b4fb46c9aa072393c0cfb90, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f53a730e8f7644b05a1161eeb6349a02, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 2d5154b8f79494161a4b583568343596, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 8daaf2b995a1a46eab9b5549767ebfa9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8679ed5da9e544a5399717dc5bdf95f4, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 5734477e28aa64d7c8d68d8e967256fe, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: b523de96112404c98ad89bea2421a502, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a49d3dd67f4534b30b0f0b0c192d3cfd, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: b4122b11a186d457c816b62922561716, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 359207a209f4c4e13adefcd97085d0da, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0fce036ab377c4342b7063b4a6c9829b, type: 2}

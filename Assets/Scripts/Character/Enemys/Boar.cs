@@ -46,8 +46,7 @@ public class Boar : Enemy
     public float specialTime;
     public float currentSpecialTime;
 
-    [Header("给一个受伤的冲力")]
-    public float damageV;
+    
 
     protected override void Awake()
     {
@@ -158,6 +157,5 @@ public class Boar : Enemy
             transform.localScale = localScale;
             direction.x *= -1;
         }
-        // rigidbody2d.AddForce(new Vector2(damageV * transform.localScale.x,0),ForceMode2D.Impulse);
     }
 }
