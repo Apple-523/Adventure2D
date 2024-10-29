@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private PlayerInputSystem playerInputSystem;
     private Rigidbody2D rigidbody2d;
+    private Character character;
 
 
     /// <summary>
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     private PlayerEventHandler playerEventHandler;
     private CharacterEventHandler characterEventHandler;
 
+    private GameStateEventHandler gameStateEventHandler;
 
     private bool isOnGround;
     private bool isDamage;
@@ -46,32 +48,45 @@ public class Player : MonoBehaviour
         isDamage = false;
         playerInputSystem = new PlayerInputSystem();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        pcEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
-        playerEventHandler = GetComponentInChildren<PlayerEventHandler>();
-        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
+        character = GetComponent<Character>();
+        pcEventHandler = PhysicsCheckEventHandler.Instance;
+        //TODO: wmy 这里需要通过get获取
+        playerEventHandler = PlayerEventHandler.Instance;
+        characterEventHandler =CharacterEventHandler.Instance;
+        gameStateEventHandler = GameStateEventHandler.Instance;
     }
     private void OnEnable()
     {
         playerInputSystem.Enable();
         playerInputSystem.Player.Jump.started += onClickJump;
+
         pcEventHandler.OnCharacterGroundChange += OnPlayerGroundChange;
         pcEventHandler.OnCharacterByWall += OnPlayerByWall;
+
         playerEventHandler.OnCharacterEndAttack += OnPlayerEndAttack;
         playerInputSystem.Player.Fire.started += OnPlayerFire;
+
         characterEventHandler.OnCharacterDamage += OnPlayerDamage;
         characterEventHandler.OnCharacterDeath += OnPlayerDeath;
+
+        gameStateEventHandler.OnUpdateGameState += OnUpdateGameState;
     }
 
     private void OnDisable()
     {
         playerInputSystem.Disable();
         playerInputSystem.Player.Jump.started -= onClickJump;
+
         pcEventHandler.OnCharacterGroundChange -= OnPlayerGroundChange;
         pcEventHandler.OnCharacterByWall -= OnPlayerByWall;
+
         playerEventHandler.OnCharacterEndAttack -= OnPlayerEndAttack;
         playerInputSystem.Player.Fire.started -= OnPlayerFire;
+
         characterEventHandler.OnCharacterDamage += OnPlayerDamage;
         characterEventHandler.OnCharacterDeath -= OnPlayerDeath;
+
+        gameStateEventHandler.OnUpdateGameState += OnUpdateGameState;
     }
 
 
@@ -144,7 +159,8 @@ public class Player : MonoBehaviour
 
     private void OnPlayerFire(InputAction.CallbackContext context)
     {
-        if (isDeath) {
+        if (isDeath)
+        {
             return;
         }
         isAttack = true;
@@ -156,22 +172,32 @@ public class Player : MonoBehaviour
         this.isAttack = isAttack;
     }
 
-    private void OnPlayerDamage(object sender, bool isDamage)
+    private void OnPlayerDamage(object sender, DamageEventArgs arg)
     {
-        this.isDamage = isDamage;
-        //  if (isDamage)
-        // {
-        //     Vector2 velocity = rigidbody2d.velocity;
-        //     velocity.x = 0;
-        //     rigidbody2d.velocity = velocity;
-        //     rigidbody2d.AddForce(new Vector2(damageV * transform.localScale.x,0),ForceMode2D.Impulse);
-        // }
-        
+        this.isDamage = arg.isDamage;
+        playerEventHandler.PlayerUpdateHealth(arg.isDamage, arg.currentHealth);
     }
 
     private void OnPlayerDeath(object sender, bool isDeath)
     {
         this.isDeath = isDeath;
+    }
+
+
+    private void OnUpdateGameState(object sender, GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.Open:
+                break;
+            case GameState.StartGame:
+                //TODO: wmy 初始化角色
+                character.InitCharacter();
+                playerEventHandler.PlayerUpdateHealth(false,character.CurrentHealth);
+                break;
+            case GameState.PlayerDie:
+                break;
+        }
     }
     #endregion
 }

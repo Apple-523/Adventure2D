@@ -14,7 +14,7 @@ public class Damage : MonoBehaviour
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
+        characterEventHandler = CharacterEventHandler.Instance;
     }
 
     private void OnEnable()
@@ -28,7 +28,7 @@ public class Damage : MonoBehaviour
         characterEventHandler.OnCharacterDamage += OnCharacterDamage;
     }
 
-    private void OnCharacterDamage(object sender, bool isDamage)
+    private void OnCharacterDamage(object sender, DamageEventArgs args)
     {
         Vector2 velocity = rigidbody2d.velocity;
         velocity.x = 0;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,11 @@ public class Character : MonoBehaviour
     [Header("当前血量")]
     [SerializeField]
     private float currentHealth;
+    // 公开的只读属性，允许外部读取但不允许修改
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+    }
     [Header("无敌状态时间")]
     public float invincibleStateTime;
     [SerializeField]
@@ -19,7 +25,7 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
+        characterEventHandler = CharacterEventHandler.Instance;
         currentHealth = maxHealth;
     }
 
@@ -57,10 +63,15 @@ public class Character : MonoBehaviour
                 // 受伤
                 Debug.Log(gameObject.name + "受伤了!");
                 // 播放动画
-                characterEventHandler.CharacterDamage(true);
+                characterEventHandler.CharacterDamage(true, currentHealth);
                 // 无敌时间
                 currentStateTime = invincibleStateTime;
             }
         }
+    }
+
+    public void InitCharacter()
+    {
+        currentHealth = maxHealth;
     }
 }

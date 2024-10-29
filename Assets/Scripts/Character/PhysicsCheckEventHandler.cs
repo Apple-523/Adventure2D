@@ -2,8 +2,22 @@ using System;
 using UnityEngine;
 
 
-public class PhysicsCheckEventHandler : MonoBehaviour
+public class PhysicsCheckEventHandler
 {
+    // 静态只读实例，确保只有一个实例
+    private static readonly PhysicsCheckEventHandler instance = new PhysicsCheckEventHandler();
+
+    // 私有构造函数，防止从外部创建实例
+    private PhysicsCheckEventHandler() { }
+
+    // 公有静态属性用于获取实例
+    public static PhysicsCheckEventHandler Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
     public event EventHandler<bool> OnCharacterGroundChange;
     public void CharacterGroundChange(bool isOnGround)
     {

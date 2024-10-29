@@ -5,6 +5,20 @@ using UnityEngine;
 
 public class PointManager : MonoBehaviour
 {
+    // 静态只读实例，确保只有一个实例
+    private static readonly PointManager instance = new PointManager();
+
+    // 私有构造函数，防止从外部创建实例
+    private PointManager() { }
+
+    // 公有静态属性用于获取实例
+    public static PointManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
     private PointEventHandler pointEventHandler;
     [Header("当前的分数")]
     private float currentPoint;
@@ -12,7 +26,7 @@ public class PointManager : MonoBehaviour
     private void Awake()
     {
         currentPoint = 0;
-        pointEventHandler = FindAnyObjectByType<PointEventHandler>();
+        pointEventHandler = PointEventHandler.Instance;
     }
     private void OnEnable()
     {
