@@ -49,11 +49,11 @@ public class Player : MonoBehaviour
         playerInputSystem = new PlayerInputSystem();
         rigidbody2d = GetComponent<Rigidbody2D>();
         character = GetComponent<Character>();
-        pcEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
+        pcEventHandler = PhysicsCheckEventHandler.Instance;
         //TODO: wmy 这里需要通过get获取
         playerEventHandler = PlayerEventHandler.Instance;
-        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
-        gameStateEventHandler = FindAnyObjectByType<GameStateEventHandler>();
+        characterEventHandler =CharacterEventHandler.Instance;
+        gameStateEventHandler = GameStateEventHandler.Instance;
     }
     private void OnEnable()
     {

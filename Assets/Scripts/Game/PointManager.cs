@@ -26,7 +26,7 @@ public class PointManager : MonoBehaviour
     private void Awake()
     {
         currentPoint = 0;
-        pointEventHandler = FindAnyObjectByType<PointEventHandler>();
+        pointEventHandler = PointEventHandler.Instance;
     }
     private void OnEnable()
     {

@@ -18,9 +18,9 @@ public class PlayerAnimator : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GetComponent<Player>();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        physicsCheckEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
-        playerEventHandler = FindAnyObjectByType<PlayerEventHandler>();
-        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
+        physicsCheckEventHandler = PhysicsCheckEventHandler.Instance;
+        playerEventHandler = PlayerEventHandler.Instance;
+        characterEventHandler = CharacterEventHandler.Instance;
     }
 
     private void OnEnable()

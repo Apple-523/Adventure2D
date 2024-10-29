@@ -67,11 +67,11 @@ public abstract class Enemy : MonoBehaviour
         // isWalk = false;
         // isRun = false;
         direction = new Vector2(-1, 1);
-        physicsEvent = GetComponentInChildren<PhysicsCheckEventHandler>();
-        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
+        physicsEvent = PhysicsCheckEventHandler.Instance;
+        characterEventHandler = CharacterEventHandler.Instance;
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        pointEventHandler = FindAnyObjectByType<PointEventHandler>();
+        pointEventHandler = PointEventHandler.Instance;
     }
 
     protected virtual void Update()

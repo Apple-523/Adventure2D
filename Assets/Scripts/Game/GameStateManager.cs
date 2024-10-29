@@ -23,7 +23,7 @@ public class GameStateManager : MonoBehaviour
             return instance;
         }
     }
-    
+
     private GameState gameState;
     private GameStateEventHandler gameStateEventHandler;
     private void Awake()
@@ -31,7 +31,7 @@ public class GameStateManager : MonoBehaviour
         gameState = GameState.Open;
         //TODO: wmy test
         gameState = GameState.StartGame;
-        gameStateEventHandler = FindObjectOfType<GameStateEventHandler>();
+        gameStateEventHandler = GameStateEventHandler.Instance;
         gameStateEventHandler.UpdateGameState(gameState);
     }
 }

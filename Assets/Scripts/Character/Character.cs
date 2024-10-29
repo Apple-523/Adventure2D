@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
+        characterEventHandler = CharacterEventHandler.Instance;
         currentHealth = maxHealth;
     }
 
