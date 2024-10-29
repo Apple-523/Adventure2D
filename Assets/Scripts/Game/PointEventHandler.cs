@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointEventHandler : MonoBehaviour
+public class PointEventHandler 
 {
     // 静态只读实例，确保只有一个实例
     private static readonly PointEventHandler instance = new PointEventHandler();

@@ -49,10 +49,10 @@ public class Player : MonoBehaviour
         playerInputSystem = new PlayerInputSystem();
         rigidbody2d = GetComponent<Rigidbody2D>();
         character = GetComponent<Character>();
-        pcEventHandler = PhysicsCheckEventHandler.Instance;
+        pcEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
         //TODO: wmy 这里需要通过get获取
         playerEventHandler = PlayerEventHandler.Instance;
-        characterEventHandler =CharacterEventHandler.Instance;
+        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
         gameStateEventHandler = GameStateEventHandler.Instance;
     }
     private void OnEnable()
@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
             case GameState.StartGame:
                 //TODO: wmy 初始化角色
                 character.InitCharacter();
-                playerEventHandler.PlayerUpdateHealth(false,character.CurrentHealth);
+                playerEventHandler.PlayerUpdateHealth(false, character.CurrentHealth);
                 break;
             case GameState.PlayerDie:
                 break;

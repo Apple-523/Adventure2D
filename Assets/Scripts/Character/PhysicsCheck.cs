@@ -37,7 +37,7 @@ public class PhysicsCheck : MonoBehaviour
 
     private void Awake()
     {
-        eventHandler = PhysicsCheckEventHandler.Instance;
+        eventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
         isByLeftWall = false;
         isByRightWall = false;
     }

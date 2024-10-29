@@ -2,23 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
-public class CharacterEventHandler
+public class CharacterEventHandler : MonoBehaviour
 {
-    // 静态只读实例，确保只有一个实例
-    private static readonly CharacterEventHandler instance = new CharacterEventHandler();
-
-    // 私有构造函数，防止从外部创建实例
-    private CharacterEventHandler() { }
-
-    // 公有静态属性用于获取实例
-    public static CharacterEventHandler Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
     public event EventHandler<DamageEventArgs> OnCharacterDamage;
     public void CharacterDamage(bool isDamage, float currentHealth)
     {

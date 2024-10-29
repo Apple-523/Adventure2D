@@ -22,7 +22,7 @@ public class PlayerDetection : MonoBehaviour
     private void Awake()
     {
         isCloseToPlayer = false;
-        eventHandler = PhysicsCheckEventHandler.Instance;
+        eventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
     }
 
     private void Update()

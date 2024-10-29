@@ -66,9 +66,9 @@ public abstract class Enemy : MonoBehaviour
     {
         // isWalk = false;
         // isRun = false;
-        direction = new Vector2(-1, 1);
-        physicsEvent = PhysicsCheckEventHandler.Instance;
-        characterEventHandler = CharacterEventHandler.Instance;
+        direction = new Vector2(-1, 0);
+        physicsEvent = GetComponentInChildren<PhysicsCheckEventHandler>();
+        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         pointEventHandler = PointEventHandler.Instance;
@@ -94,13 +94,21 @@ public abstract class Enemy : MonoBehaviour
             if (currentWaitTime <= 0)
             {
                 // 等待时间一到，就转身往回走
-                direction.x = -direction.x;
+                ChangeDirection();
+
                 isWaiting = false;
-                Vector3 localScale = transform.localScale;
-                localScale.x = -localScale.x;
-                transform.localScale = localScale;
+
             }
         }
+    }
+
+    protected virtual void ChangeDirection()
+    {
+        // 简单实现左右转向
+        direction.x = -direction.x;
+        Vector3 localScale = transform.localScale;
+        localScale.x = -localScale.x;
+        transform.localScale = localScale;
     }
     /// <summary>
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
@@ -117,6 +125,7 @@ public abstract class Enemy : MonoBehaviour
     {
         Vector2 velocity = rigidbody2d.velocity;
         velocity.x = currentSpeed * direction.x;
+        velocity.y = currentSpeed * direction.y;
         rigidbody2d.velocity = velocity;
     }
 
@@ -182,13 +191,15 @@ public abstract class Enemy : MonoBehaviour
         SwitchToAState(EnemyStateEnum.Special);
     }
 
-    
+
 
     protected virtual void OnEnemyDamage(object sender, DamageEventArgs arg)
     {
         this.isDamage = arg.isDamage;
+        
         if (isDamage)
         {
+            Debug.Log("OnEnemyDamageOnEnemyDamage");
             animator.SetTrigger(CharacterAnim.kCharacterAnimDamageTrig);
         }
 
@@ -206,5 +217,5 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-   
+
 }

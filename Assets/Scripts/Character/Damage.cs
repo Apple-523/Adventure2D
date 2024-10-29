@@ -14,7 +14,7 @@ public class Damage : MonoBehaviour
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        characterEventHandler = CharacterEventHandler.Instance;
+        characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
     }
 
     private void OnEnable()

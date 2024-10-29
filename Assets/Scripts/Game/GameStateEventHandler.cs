@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStateEventHandler : MonoBehaviour
+public class GameStateEventHandler 
 {
     // 静态只读实例，确保只有一个实例
     private static readonly GameStateEventHandler instance = new GameStateEventHandler();

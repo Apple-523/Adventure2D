@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerEventHandler : MonoBehaviour
+public class PlayerEventHandler 
 {
     // 静态只读实例，确保只有一个实例
     private static readonly PlayerEventHandler instance = new PlayerEventHandler();
