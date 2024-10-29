@@ -128,6 +128,7 @@ public abstract class Enemy : MonoBehaviour
         characterEventHandler.OnCharacterDeath += OnEnemyDeath;
     }
 
+
     protected virtual void OnDisable()
     {
         physicsEvent.OnCharacterByWall -= onCharacterByWall;
@@ -181,10 +182,11 @@ public abstract class Enemy : MonoBehaviour
         SwitchToAState(EnemyStateEnum.Special);
     }
 
+    
 
-    protected virtual void OnEnemyDamage(object sender, bool isDamage)
+    protected virtual void OnEnemyDamage(object sender, DamageEventArgs arg)
     {
-        this.isDamage = isDamage;
+        this.isDamage = arg.isDamage;
         if (isDamage)
         {
             animator.SetTrigger(CharacterAnim.kCharacterAnimDamageTrig);

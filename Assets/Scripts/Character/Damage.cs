@@ -28,7 +28,7 @@ public class Damage : MonoBehaviour
         characterEventHandler.OnCharacterDamage += OnCharacterDamage;
     }
 
-    private void OnCharacterDamage(object sender, bool isDamage)
+    private void OnCharacterDamage(object sender, DamageEventArgs args)
     {
         Vector2 velocity = rigidbody2d.velocity;
         velocity.x = 0;

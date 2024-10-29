@@ -125,9 +125,9 @@ public class Boar : Enemy
             currentSpecialTime = specialTime;
         }
     }
-    protected override void OnEnemyDamage(object sender, bool e)
+    protected override void OnEnemyDamage(object sender, DamageEventArgs args)
     {
-        base.OnEnemyDamage(sender, e);
+        base.OnEnemyDamage(sender, args);
         if (currentSpecialTime <= 0)
         {
             // 说明是背向Player的

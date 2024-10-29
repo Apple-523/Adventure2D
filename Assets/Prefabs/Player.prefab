@@ -176,7 +176,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.03, y: 1.02}
-  m_Size: {x: 0.93, y: 1.91}
+  m_Size: {x: 0.53, y: 1.32}
   m_Direction: 0
 --- !u!114 &8155467165920054112
 MonoBehaviour:
@@ -409,7 +409,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4432580315539102146}
   - component: {fileID: 2224511793735868477}
-  - component: {fileID: 7962539503823031343}
   - component: {fileID: 2543787397369653834}
   m_Layer: 7
   m_Name: EventHandler
@@ -443,18 +442,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85b0fd03e52dd4ea0a6a10241feab814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7962539503823031343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6423719438455665714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2101b6114af184802b9ed6953bb8a452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2543787397369653834

@@ -19,7 +19,7 @@ public class PlayerAnimator : MonoBehaviour
         player = GetComponent<Player>();
         rigidbody2d = GetComponent<Rigidbody2D>();
         physicsCheckEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
-        playerEventHandler = GetComponentInChildren<PlayerEventHandler>();
+        playerEventHandler = FindAnyObjectByType<PlayerEventHandler>();
         characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
     }
 
@@ -39,10 +39,6 @@ public class PlayerAnimator : MonoBehaviour
         characterEventHandler.OnCharacterDamage -= OnPlayerDamage;
         characterEventHandler.OnCharacterDeath -= OnPlayerDeath;
     }
-
-
-
-
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
@@ -77,9 +73,9 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool(PlayerAnim.kPlayerAnimIsAttack, isAttack);
         animator.SetTrigger(PlayerAnim.kPlayerAnimAttackTrig);
     }
-    private void OnPlayerDamage(object sender, bool isDamage)
+    private void OnPlayerDamage(object sender, DamageEventArgs arg)
     {
-        if (isDamage)
+        if (arg.isDamage)
         {
             animator.SetTrigger(CharacterAnim.kCharacterAnimDamageTrig);
         }
