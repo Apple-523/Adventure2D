@@ -44,6 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1892404703
+    locked: 0
   - name: Back3
     uniqueID: 68257833
     locked: 0
@@ -55,6 +58,9 @@ TagManager:
     locked: 0
   - name: Middle
     uniqueID: 2901992059
+    locked: 0
+  - name: House
+    uniqueID: 2585227417
     locked: 0
   - name: Front1
     uniqueID: 3249399655

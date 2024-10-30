@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 public enum GameState
 {
@@ -19,5 +20,20 @@ public class GameStateManager : MonoBehaviour
         gameState = GameState.StartGame;
         gameStateEventHandler = GameStateEventHandler.Instance;
         gameStateEventHandler.UpdateGameState(gameState);
+    }
+
+    private void OnEnable()
+    {
+        gameStateEventHandler.OnUpdateGameState += OnUpdateGameState;
+    }
+
+    private void OnDisable()
+    {
+        gameStateEventHandler.OnUpdateGameState -= OnUpdateGameState;
+    }
+
+    private void OnUpdateGameState(object sender, GameState gameState)
+    {
+        this.gameState = gameState;
     }
 }
