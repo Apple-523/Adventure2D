@@ -175,7 +175,7 @@ public class Player : MonoBehaviour
     private void OnPlayerDamage(object sender, DamageEventArgs arg)
     {
         this.isDamage = arg.isDamage;
-        playerEventHandler.PlayerUpdateHealth(arg.isDamage, arg.currentHealth);
+        playerEventHandler.PlayerUpdateHealth(arg.isDamage, arg.currentHealth, arg.maxHealth);
     }
 
     private void OnPlayerDeath(object sender, bool isDeath)
@@ -186,14 +186,15 @@ public class Player : MonoBehaviour
 
     private void OnUpdateGameState(object sender, GameState gameState)
     {
+        Debug.Log("OnUpdateGameState " + gameState);
         switch (gameState)
         {
             case GameState.Open:
                 break;
             case GameState.StartGame:
-                //TODO: wmy 初始化角色
+                // 初始化角色
                 character.InitCharacter();
-                playerEventHandler.PlayerUpdateHealth(false, character.CurrentHealth);
+                playerEventHandler.PlayerUpdateHealth(false, character.CurrentHealth, character.maxHealth);
                 break;
             case GameState.PlayerDie:
                 break;

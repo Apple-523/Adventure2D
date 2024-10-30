@@ -59,7 +59,8 @@ public class Bee : Enemy
         float y = Random.Range(-1f, 1f);
         Vector2 randomVector = new Vector2(x, y);
         direction = randomVector;
-        Debug.Log("随机生成的Vector2: " + randomVector);
+        //TODO: wmy 调整
+        // Debug.Log("随机生成的Vector2: " + randomVector);
     }
 
 }

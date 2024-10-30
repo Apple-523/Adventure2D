@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerEventHandler 
+public class PlayerEventHandler
 {
     // 静态只读实例，确保只有一个实例
     private static readonly PlayerEventHandler instance = new PlayerEventHandler();
@@ -37,13 +37,13 @@ public class PlayerEventHandler
     }
 
     public event EventHandler<DamageEventArgs> OnPlayerUpdateHealth;
-    public void PlayerUpdateHealth(bool isDamage, float currentHealth)
+    public void PlayerUpdateHealth(bool isDamage, float currentHealth, float maxHealth)
     {
         if (isDamage)
         {
             Debug.Log("Player受伤了！" + currentHealth);
         }
-        OnPlayerUpdateHealth?.Invoke(this, new DamageEventArgs(isDamage, currentHealth));
+        OnPlayerUpdateHealth?.Invoke(this, new DamageEventArgs(isDamage, currentHealth, maxHealth));
 
     }
 

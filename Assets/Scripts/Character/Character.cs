@@ -63,7 +63,7 @@ public class Character : MonoBehaviour
                 // 受伤
                 Debug.Log(gameObject.name + "受伤了!");
                 // 播放动画
-                characterEventHandler.CharacterDamage(true, currentHealth);
+                characterEventHandler.CharacterDamage(true, currentHealth, maxHealth);
                 // 无敌时间
                 currentStateTime = invincibleStateTime;
             }
