@@ -44,7 +44,6 @@ public class Character : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("currentStateTime = " + currentStateTime);
         if (CommonUtils.IsInLayerMask(other.gameObject, canBeDamagedLayer) &&
         currentStateTime <= 0)
         {

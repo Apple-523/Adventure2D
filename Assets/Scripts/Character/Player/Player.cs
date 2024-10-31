@@ -40,12 +40,15 @@ public class Player : MonoBehaviour
     private bool isDeath;
 
 
+    private bool isStartGame;
+
 
     #region 生命周期
     private void Awake()
     {
         isAttack = false;
         isDamage = false;
+        isStartGame = false;
         playerInputSystem = new PlayerInputSystem();
         rigidbody2d = GetComponent<Rigidbody2D>();
         character = GetComponent<Character>();
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour
         playerEventHandler = PlayerEventHandler.Instance;
         characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
         gameStateEventHandler = GameStateEventHandler.Instance;
+
     }
     private void OnEnable()
     {
@@ -70,6 +74,8 @@ public class Player : MonoBehaviour
         characterEventHandler.OnCharacterDeath += OnPlayerDeath;
 
         gameStateEventHandler.OnUpdateGameState += OnUpdateGameState;
+
+
     }
 
     private void OnDisable()
@@ -87,6 +93,7 @@ public class Player : MonoBehaviour
         characterEventHandler.OnCharacterDeath -= OnPlayerDeath;
 
         gameStateEventHandler.OnUpdateGameState += OnUpdateGameState;
+
     }
 
 
@@ -97,7 +104,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isDeath && !isDamage)
+        if (!isDeath && !isDamage && isStartGame)
         {
             PlayerMove();
         }
@@ -108,7 +115,7 @@ public class Player : MonoBehaviour
 
     private void onClickJump(InputAction.CallbackContext context)
     {
-        if (isOnGround)
+        if (isOnGround && isStartGame)
         {
             rigidbody2d.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
             playerEventHandler.CharacterBeginJump(false);
@@ -159,7 +166,7 @@ public class Player : MonoBehaviour
 
     private void OnPlayerFire(InputAction.CallbackContext context)
     {
-        if (isDeath)
+        if (isDeath || !isStartGame)
         {
             return;
         }
@@ -187,16 +194,21 @@ public class Player : MonoBehaviour
     private void OnUpdateGameState(object sender, GameState gameState)
     {
         Debug.Log("OnUpdateGameState " + gameState);
+
         switch (gameState)
         {
             case GameState.Open:
+                isStartGame = false;
                 break;
             case GameState.StartGame:
                 // 初始化角色
+                isStartGame = true;
                 character.InitCharacter();
                 playerEventHandler.PlayerUpdateHealth(false, character.CurrentHealth, character.maxHealth);
+
                 break;
             case GameState.PlayerDie:
+                isStartGame = false;
                 break;
         }
     }
