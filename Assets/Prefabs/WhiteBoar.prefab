@@ -82,7 +82,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1392975237
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -349463982, guid: 3b4c0b019c66741c9a82bdda5b256050, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134,7 +134,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 256
@@ -147,7 +147,7 @@ CapsuleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 512
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295

@@ -6,10 +6,10 @@ using UnityEngine.PlayerLoop;
 
 public class CharacterEventHandler : MonoBehaviour
 {
-    public event EventHandler<DamageEventArgs> OnCharacterDamage;
-    public void CharacterDamage(bool isDamage, float currentHealth, float maxHealth)
+    public event EventHandler<DamageEventArgs> OnCharacterHealthChange;
+    public void CharacterHealthChange(bool isDamage, float currentHealth, float maxHealth)
     {
-        OnCharacterDamage?.Invoke(this, new DamageEventArgs(isDamage, currentHealth, maxHealth));
+        OnCharacterHealthChange?.Invoke(this, new DamageEventArgs(isDamage, currentHealth, maxHealth));
     }
 
     public event EventHandler<bool> OnCharacterDeath;
@@ -17,7 +17,6 @@ public class CharacterEventHandler : MonoBehaviour
     {
         OnCharacterDeath?.Invoke(this, isDeath);
     }
-
 }
 
 public class DamageEventArgs

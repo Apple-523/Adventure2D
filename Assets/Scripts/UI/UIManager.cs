@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     [Header("顶部TopBar")]
     public Image topBar;
 
+    [Header("死亡盘")]
+    public Image deadPan;
+
     private PlayerEventHandler playerEventHandler;
     private GameStateEventHandler gameStateEventHandler;
     private void Awake()
@@ -37,6 +40,7 @@ public class UIManager : MonoBehaviour
                     startPan.gameObject.SetActive(true);
                     titlePan.gameObject.SetActive(true);
                     topBar.gameObject.SetActive(false);
+                    deadPan.gameObject.SetActive(false);
                     Debug.Log("开局！- UI");
                 }
 
@@ -46,6 +50,7 @@ public class UIManager : MonoBehaviour
                     startPan.gameObject.SetActive(false);
                     titlePan.gameObject.SetActive(false);
                     topBar.gameObject.SetActive(true);
+                    deadPan.gameObject.SetActive(false);
                     Debug.Log("开始游戏 - UI");
 
                 }
@@ -56,6 +61,7 @@ public class UIManager : MonoBehaviour
                     startPan.gameObject.SetActive(false);
                     titlePan.gameObject.SetActive(false);
                     topBar.gameObject.SetActive(false);
+                    deadPan.gameObject.SetActive(true);
                     Debug.Log("游戏结束 - UI");
                 }
                 break;

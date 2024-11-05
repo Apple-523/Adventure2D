@@ -7,6 +7,8 @@ TagManager:
   - Bounds
   - Ground
   - Enemy
+  - Transform
+  - Interactor
   layers:
   - Default
   - TransparentFX
@@ -68,6 +70,12 @@ TagManager:
   - name: Front2
     uniqueID: 1490290535
     locked: 0
+  - name: Water
+    uniqueID: 1331373577
+    locked: 0
   - name: Front3
     uniqueID: 3101826477
+    locked: 0
+  - name: Thorn
+    uniqueID: 1251332765
     locked: 0

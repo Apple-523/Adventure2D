@@ -53,7 +53,6 @@ public class Player : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         character = GetComponent<Character>();
         pcEventHandler = GetComponentInChildren<PhysicsCheckEventHandler>();
-        //TODO: wmy 这里需要通过get获取
         playerEventHandler = PlayerEventHandler.Instance;
         characterEventHandler = GetComponentInChildren<CharacterEventHandler>();
         gameStateEventHandler = GameStateEventHandler.Instance;
@@ -70,7 +69,7 @@ public class Player : MonoBehaviour
         playerEventHandler.OnCharacterEndAttack += OnPlayerEndAttack;
         playerInputSystem.Player.Fire.started += OnPlayerFire;
 
-        characterEventHandler.OnCharacterDamage += OnPlayerDamage;
+        characterEventHandler.OnCharacterHealthChange += OnPlayerDamage;
         characterEventHandler.OnCharacterDeath += OnPlayerDeath;
 
         gameStateEventHandler.OnUpdateGameState += OnUpdateGameState;
@@ -89,7 +88,7 @@ public class Player : MonoBehaviour
         playerEventHandler.OnCharacterEndAttack -= OnPlayerEndAttack;
         playerInputSystem.Player.Fire.started -= OnPlayerFire;
 
-        characterEventHandler.OnCharacterDamage += OnPlayerDamage;
+        characterEventHandler.OnCharacterHealthChange += OnPlayerDamage;
         characterEventHandler.OnCharacterDeath -= OnPlayerDeath;
 
         gameStateEventHandler.OnUpdateGameState += OnUpdateGameState;
@@ -108,6 +107,12 @@ public class Player : MonoBehaviour
         {
             PlayerMove();
         }
+        if (isDeath)
+        {
+            Vector2 velocity = rigidbody2d.velocity;
+            velocity.x = 0;
+            rigidbody2d.velocity = velocity;
+        }
     }
 
     #endregion
@@ -121,8 +126,6 @@ public class Player : MonoBehaviour
             playerEventHandler.CharacterBeginJump(false);
         }
     }
-
-
 
     /// <summary>
     /// 控制人物移动
@@ -188,6 +191,8 @@ public class Player : MonoBehaviour
     private void OnPlayerDeath(object sender, bool isDeath)
     {
         this.isDeath = isDeath;
+        playerEventHandler.PlayerUpdateHealth(isDeath, character.CurrentHealth, character.maxHealth);
+        GameStateEventHandler.Instance.UpdateGameState(GameState.PlayerDie);
     }
 
 

@@ -11,4 +11,6 @@ public class CommonUtils
         // 使用位运算检查是否在 LayerMask 中
         return (layerMask & (1 << layer)) != 0;
     }
+
+    
 }

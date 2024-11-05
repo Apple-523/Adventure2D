@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("开局音乐")]
+    public AudioSource openGameAudioSource;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("开始游戏音乐")]
+    public AudioSource startGameAudioSource;
+
+    [Header("暂停游戏音乐")]
+    public AudioSource pauseGameAudioSource;
+
+    [Header("主角受伤音乐")]
+    public AudioSource playerDamageAudioSource;
+
+    [Header("主角死亡音乐")]
+    public AudioSource playerDieAudioSource;
 }

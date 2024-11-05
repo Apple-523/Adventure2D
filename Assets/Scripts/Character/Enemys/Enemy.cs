@@ -133,7 +133,7 @@ public abstract class Enemy : MonoBehaviour
     {
         physicsEvent.OnCharacterByWall += onCharacterByWall;
         physicsEvent.OnPlayerIsClose += OnPlayerIsClose;
-        characterEventHandler.OnCharacterDamage += OnEnemyDamage;
+        characterEventHandler.OnCharacterHealthChange += OnEnemyDamage;
         characterEventHandler.OnCharacterDeath += OnEnemyDeath;
     }
 
@@ -142,7 +142,7 @@ public abstract class Enemy : MonoBehaviour
     {
         physicsEvent.OnCharacterByWall -= onCharacterByWall;
         physicsEvent.OnPlayerIsClose -= OnPlayerIsClose;
-        characterEventHandler.OnCharacterDamage -= OnEnemyDamage;
+        characterEventHandler.OnCharacterHealthChange -= OnEnemyDamage;
         characterEventHandler.OnCharacterDeath -= OnEnemyDeath;
     }
 

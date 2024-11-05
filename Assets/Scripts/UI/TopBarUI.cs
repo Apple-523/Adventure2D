@@ -70,7 +70,7 @@ public class TopBarUI : MonoBehaviour
 
         destValue = currentHealth / maxHealth;
         Debug.Log("destValue = " + destValue);
-        float diffValue = Mathf.Abs(destValue - greenSlider.fillAmount);
+        float diffValue = destValue - greenSlider.fillAmount;
         speed = diffValue / distanceTime;
         currentGreenTime = distanceTime;
     }

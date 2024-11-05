@@ -28,7 +28,7 @@ public class PlayerAnimator : MonoBehaviour
         physicsCheckEventHandler.OnCharacterGroundChange += OnPlayerGroundChage;
         playerEventHandler.OnCharacterBeginJump += OnPlayerBeginJump;
         playerEventHandler.OnCharacterPressAttack += OnPlayerPressAttack;
-        characterEventHandler.OnCharacterDamage += OnPlayerDamage;
+        characterEventHandler.OnCharacterHealthChange += OnPlayerDamage;
         characterEventHandler.OnCharacterDeath += OnPlayerDeath;
     }
     private void OnDisable()
@@ -36,7 +36,7 @@ public class PlayerAnimator : MonoBehaviour
         physicsCheckEventHandler.OnCharacterGroundChange -= OnPlayerGroundChage;
         playerEventHandler.OnCharacterBeginJump -= OnPlayerBeginJump;
         playerEventHandler.OnCharacterPressAttack -= OnPlayerPressAttack;
-        characterEventHandler.OnCharacterDamage -= OnPlayerDamage;
+        characterEventHandler.OnCharacterHealthChange -= OnPlayerDamage;
         characterEventHandler.OnCharacterDeath -= OnPlayerDeath;
     }
 

@@ -19,13 +19,13 @@ public class Damage : MonoBehaviour
 
     private void OnEnable()
     {
-        characterEventHandler.OnCharacterDamage += OnCharacterDamage;
+        characterEventHandler.OnCharacterHealthChange += OnCharacterDamage;
     }
 
 
     private void OnDisable()
     {
-        characterEventHandler.OnCharacterDamage += OnCharacterDamage;
+        characterEventHandler.OnCharacterHealthChange += OnCharacterDamage;
     }
 
     private void OnCharacterDamage(object sender, DamageEventArgs args)

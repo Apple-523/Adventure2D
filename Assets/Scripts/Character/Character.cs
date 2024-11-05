@@ -37,6 +37,16 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void UpdateAddHealth(float addHealth)
+    {
+        currentHealth += addHealth;
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        characterEventHandler.CharacterHealthChange(false, currentHealth, maxHealth);
+    }
+
     /// <summary>
     /// Sent each frame where another object is within a trigger collider
     /// attached to this object (2D physics only).
@@ -49,12 +59,14 @@ public class Character : MonoBehaviour
         {
             // 将血量减少
             Attack attack = other.gameObject.GetComponent<Attack>();
+            Debug.Log("other.gameObject = " + other.gameObject);
             float attackValue = attack.attackValue;
             currentHealth -= attackValue;
             if (currentHealth <= 0)
             {
                 // 死亡
                 Debug.Log(gameObject.name + "已死亡！");
+                currentHealth = 0;
                 characterEventHandler.CharacterDeath(true);
             }
             else
@@ -62,7 +74,7 @@ public class Character : MonoBehaviour
                 // 受伤
                 Debug.Log(gameObject.name + "受伤了!");
                 // 播放动画
-                characterEventHandler.CharacterDamage(true, currentHealth, maxHealth);
+                characterEventHandler.CharacterHealthChange(true, currentHealth, maxHealth);
                 // 无敌时间
                 currentStateTime = invincibleStateTime;
             }

@@ -20,7 +20,7 @@ public class EnemyDamageAnim : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         CharacterEventHandler eventHandler = animator.gameObject.GetComponentInChildren<CharacterEventHandler>();
-        eventHandler.CharacterDamage(false, 0, 0);
+        eventHandler.CharacterHealthChange(false, 0, 0);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
