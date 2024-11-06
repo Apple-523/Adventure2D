@@ -52,4 +52,5 @@ public class MYTag {
    public static string kTagGround = "Ground";
    // public static string kTagTransform = "Transform";
    public static string kTagInteractor = "Interactor";
+   public static string kTagBounds = "Bounds";
 }

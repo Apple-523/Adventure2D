@@ -22,6 +22,7 @@ public class Character : MonoBehaviour
     private float currentStateTime;
     public LayerMask canBeDamagedLayer;
     private CharacterEventHandler characterEventHandler;
+    private PlayerEventHandler playerEventHandler;
 
     private void Awake()
     {
@@ -45,6 +46,8 @@ public class Character : MonoBehaviour
             currentHealth = maxHealth;
         }
         characterEventHandler.CharacterHealthChange(false, currentHealth, maxHealth);
+        // playerEventHandler.PlayerUpdateHealth(false, currentHealth, maxHealth);
+
     }
 
     /// <summary>

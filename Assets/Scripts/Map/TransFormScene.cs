@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TransFormScene : Interoperable
 {
     [Header("进入的场景名称")]
-    public GameObject sceneName;
-    [Header("Player的位置")]
-    public Vector2 playerPosition;
+    public string sceneName;
 
     public override void OnTriggerInteroperable(GameObject gameObject)
     {
-        //TODO: wmy 触发场景切换
+        SceneLoadUtils.Instance.LoadScene(sceneName, OnBeforeLoadScene, OnAfterLoadScene, LoadSceneMode.Additive);
+    }
+
+    private void OnBeforeLoadScene(string sceneName)
+    {
+
+    }
+    private void OnAfterLoadScene(string sceneName)
+    {
+
     }
 }

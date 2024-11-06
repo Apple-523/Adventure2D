@@ -70,6 +70,7 @@ public class UIManager : MonoBehaviour
 
     private void OnPlayerUpdateHealth(object sender, DamageEventArgs args)
     {
+        Debug.Log("UI收到OnPlayerUpdateHealth");
         TopBarUI topBarUI = topBar.GetComponent<TopBarUI>();
         topBarUI.TopBarUpdate(args);
     }
